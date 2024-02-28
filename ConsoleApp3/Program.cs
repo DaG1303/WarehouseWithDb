@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -11,10 +15,18 @@ namespace WarehouseWithDb
     {
         static void Main(string[] args)
         {
+            //var builder = new ConfigurationBuilder();
+            //builder.SetBasePath(Directory.GetCurrentDirectory());
+            //builder.AddJsonFile("appsettings.json");
+            //var config = builder.Build();
+            //var connectionString = config.GetConnectionString("DefaultConnection");
+            //var optionsBuider = new DbContextOptionsBuilder<ApplicationContext>();
+            //var options = optionsBuider.UseSqlite(connectionString).Options;
+
             Console.WriteLine($"Какие действия совершить с базой данных?\n1 - Добавление\n2 - Чтение данных\n3 - Редактирование\n4 - Удаление\n5 - Выход");
             int i = Convert.ToInt32(Console.ReadLine());
             while (true)
-            {
+            {                
                 if (i == 1)
                 {
                     AddProduct();
@@ -22,7 +34,6 @@ namespace WarehouseWithDb
                 if (i == 2)
                 {
                     ReadProduct();
-                    break;
                 }
                 if (i == 3)
                 {
@@ -36,6 +47,8 @@ namespace WarehouseWithDb
                 {
                     break;
                 }
+                Console.WriteLine($"Какие действия совершить с базой данных?\n1 - Добавление\n2 - Чтение данных\n3 - Редактирование\n4 - Удаление\n5 - Выход");
+                i = Convert.ToInt32(Console.ReadLine());
             }
         }
 
@@ -43,6 +56,13 @@ namespace WarehouseWithDb
         {
             using (var context = new ApplicationContext())
             {
+                bool isCreated = context.Database.EnsureCreated();
+                if (isCreated)
+                {
+                    Console.WriteLine("База данных успешно создана");
+                }
+                Console.WriteLine("Работа с базой данных началась");
+
                 Warehouse? warehouse = new Warehouse
                 {
                     Name = Console.ReadLine(),
@@ -56,9 +76,16 @@ namespace WarehouseWithDb
             }
         }
         private static void ReadProduct()
-        {
+        {            
             using (var context = new ApplicationContext())
             {
+                bool isCreated = context.Database.EnsureCreated();
+                if (isCreated)
+                {
+                    Console.WriteLine("База данных успешно создана");
+                }
+                Console.WriteLine("Работа с базой данных началась");
+
                 var products = context.Warehouse.ToList();
                 Console.WriteLine("Список товаров:");
                 foreach (Warehouse p in products)
@@ -71,6 +98,13 @@ namespace WarehouseWithDb
         {
             using (ApplicationContext context = new ApplicationContext())
             {
+                bool isCreated = context.Database.EnsureCreated();
+                if (isCreated)
+                {
+                    Console.WriteLine("База данных успешно создана");
+                }
+                Console.WriteLine("Работа с базой данных началась");
+
                 Warehouse? warehouse = context.Warehouse.FirstOrDefault();
                 if (warehouse != null)
                 {
@@ -93,6 +127,13 @@ namespace WarehouseWithDb
         {
             using (ApplicationContext context = new ApplicationContext())
             {
+                bool isCreated = context.Database.EnsureCreated();
+                if (isCreated)
+                {
+                    Console.WriteLine("База данных успешно создана");
+                }
+                Console.WriteLine("Работа с базой данных началась");
+
                 Warehouse? product = context.Warehouse.FirstOrDefault();
                 if (product != null)
                 {
