@@ -11,22 +11,14 @@ using System.Threading.Tasks;
 
 namespace WarehouseWithDb
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            //var builder = new ConfigurationBuilder();
-            //builder.SetBasePath(Directory.GetCurrentDirectory());
-            //builder.AddJsonFile("appsettings.json");
-            //var config = builder.Build();
-            //var connectionString = config.GetConnectionString("DefaultConnection");
-            //var optionsBuider = new DbContextOptionsBuilder<ApplicationContext>();
-            //var options = optionsBuider.UseSqlite(connectionString).Options;
-
             Console.WriteLine($"Какие действия совершить с базой данных?\n1 - Добавление\n2 - Чтение данных\n3 - Редактирование\n4 - Удаление\n5 - Выход");
             int i = Convert.ToInt32(Console.ReadLine());
             while (true)
-            {                
+            {
                 if (i == 1)
                 {
                     AddProduct();
@@ -51,7 +43,6 @@ namespace WarehouseWithDb
                 i = Convert.ToInt32(Console.ReadLine());
             }
         }
-
         private static void AddProduct()
         {
             using (var context = new ApplicationContext())
@@ -62,6 +53,8 @@ namespace WarehouseWithDb
                     Console.WriteLine("База данных успешно создана");
                 }
                 Console.WriteLine("Работа с базой данных началась");
+
+                Console.WriteLine("Введите значения:\n1.Название\n2.Количество\n3.Описание\n4.Поставщик\n");
 
                 Warehouse? warehouse = new Warehouse
                 {
@@ -76,7 +69,7 @@ namespace WarehouseWithDb
             }
         }
         private static void ReadProduct()
-        {            
+        {
             using (var context = new ApplicationContext())
             {
                 bool isCreated = context.Database.EnsureCreated();
@@ -90,7 +83,7 @@ namespace WarehouseWithDb
                 Console.WriteLine("Список товаров:");
                 foreach (Warehouse p in products)
                 {
-                    Console.WriteLine($"{p.Id}.{p.Name}\nКоличество:{p.Quantity}\nОписание:{p.Description}");                    
+                    Console.WriteLine($"{p.Id}.{p.Name}\nКоличество:{p.Quantity}\nОписание:{p.Description}\nПоставщик:{p.Supplier}\n");
                 }
             }
         }
@@ -119,7 +112,7 @@ namespace WarehouseWithDb
                 var products = context.Warehouse.ToList();
                 foreach (Warehouse product in products)
                 {
-                    Console.WriteLine($"{product.Id}.{product.Name}\nКоличество:{product.Quantity}\nОписание:{product.Description}");
+                    Console.WriteLine($"{product.Id}.{product.Name}\nКоличество:{product.Quantity}\nОписание:{product.Description}\n");
                 }
             }
         }

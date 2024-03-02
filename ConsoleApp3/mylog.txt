@@ -1,0 +1,44 @@
+dbug: 02.03.2024 12:41:00.653 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 7.0.16 initialized 'ApplicationContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:7.0.15' with options: None
+dbug: 02.03.2024 12:41:00.683 RelationalEventId.ConnectionCreating[20005] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Creating DbConnection.
+dbug: 02.03.2024 12:41:00.691 RelationalEventId.ConnectionCreated[20006] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Created DbConnection. (9ms).
+dbug: 02.03.2024 12:41:00.695 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'main' on server 'helloapp.db'.
+dbug: 02.03.2024 12:41:00.705 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'main' on server 'C:\Users\DaG13\source\repos\ConsoleApp3\ConsoleApp3\helloapp.db'.
+dbug: 02.03.2024 12:41:00.708 RelationalEventId.ConnectionDisposing[20007] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Disposing connection to database 'main' on server 'helloapp.db'.
+dbug: 02.03.2024 12:41:00.711 RelationalEventId.ConnectionDisposed[20008] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Disposed connection to database 'main' on server 'helloapp.db' (0ms).
+dbug: 02.03.2024 12:41:00.715 RelationalEventId.ConnectionCreating[20005] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Creating DbConnection.
+dbug: 02.03.2024 12:41:00.715 RelationalEventId.ConnectionCreated[20006] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Created DbConnection. (0ms).
+dbug: 02.03.2024 12:41:00.716 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteScalar'.
+dbug: 02.03.2024 12:41:00.721 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteScalar' (4ms).
+dbug: 02.03.2024 12:41:00.722 RelationalEventId.CommandInitialized[20106] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Initialized DbCommand for 'ExecuteScalar' (7ms).
+dbug: 02.03.2024 12:41:00.723 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'main' on server 'helloapp.db'.
+dbug: 02.03.2024 12:41:00.725 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'main' on server 'C:\Users\DaG13\source\repos\ConsoleApp3\ConsoleApp3\helloapp.db'.
+dbug: 02.03.2024 12:41:00.729 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+info: 02.03.2024 12:41:00.744 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (15ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+dbug: 02.03.2024 12:41:00.746 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'main' on server 'C:\Users\DaG13\source\repos\ConsoleApp3\ConsoleApp3\helloapp.db'.
+dbug: 02.03.2024 12:41:00.748 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'main' on server 'helloapp.db' (2ms).
+dbug: 02.03.2024 12:41:00.756 CoreEventId.ContextDisposed[10407] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      'ApplicationContext' disposed.
+dbug: 02.03.2024 12:41:00.757 RelationalEventId.ConnectionDisposing[20007] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Disposing connection to database 'main' on server 'helloapp.db'.
+dbug: 02.03.2024 12:41:00.759 RelationalEventId.ConnectionDisposed[20008] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Disposed connection to database 'main' on server 'helloapp.db' (1ms).
