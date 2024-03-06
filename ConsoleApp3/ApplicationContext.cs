@@ -30,6 +30,9 @@ namespace WarehouseWithDb
             }
             optionsBuilder.LogTo(logStream.WriteLine, LogLevel.Debug);           
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+        }
         public override void Dispose()
         {
             base.Dispose();

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
@@ -32,7 +33,7 @@ namespace WarehouseWithDb
                     UpdateProduct();
                 }
                 if (i == 4)
-                {
+                {                    
                     DeleteProduct();
                 }
                 if (i == 5)
@@ -52,10 +53,9 @@ namespace WarehouseWithDb
                 {
                     Console.WriteLine("База данных успешно создана");
                 }
-                Console.WriteLine("Работа с базой данных началась");
+                Console.WriteLine("Работа с базой данных началась");                
 
                 Console.WriteLine("Введите значения:\n1.Название\n2.Количество\n3.Описание\n4.Поставщик\n");
-
                 Warehouse? warehouse = new Warehouse
                 {
                     Name = Console.ReadLine(),
@@ -98,7 +98,11 @@ namespace WarehouseWithDb
                 }
                 Console.WriteLine("Работа с базой данных началась");
 
-                Warehouse? warehouse = context.Warehouse.FirstOrDefault();
+                Console.WriteLine("Какую вы строку хотите редактировать?\n");
+                int idToUpdate = Convert.ToInt32(Console.ReadLine());
+                Warehouse? warehouse = context.Warehouse.Find(idToUpdate);
+                Console.WriteLine("Введите значения:\n1.Название\n2.Количество\n3.Описание\n4.Поставщик\n");
+
                 if (warehouse != null)
                 {
                     warehouse.Name = Console.ReadLine();
@@ -125,21 +129,29 @@ namespace WarehouseWithDb
                 {
                     Console.WriteLine("База данных успешно создана");
                 }
-                Console.WriteLine("Работа с базой данных началась");
+                Console.WriteLine("Работа с базой данных началась\n");
 
-                Warehouse? product = context.Warehouse.FirstOrDefault();
+                Console.WriteLine("Какую вы строку хотите удалить из базы данных?\n");
+                int idToDelete = Convert.ToInt32(Console.ReadLine());
+                var product = context.Warehouse.FirstOrDefault(e => e.Id == idToDelete);
                 if (product != null)
                 {
                     context.Warehouse.Remove(product);
                     context.SaveChanges();
+                    Console.WriteLine("Строка успешно удалена.");
                 }
-                Console.WriteLine("\nДанные после удаления:");
+                else
+                {
+                    Console.WriteLine("Строка с указанным Id не найдена.");
+                }
+                Console.WriteLine("\nДанные после работы с базой:");
                 var products = context.Warehouse.ToList();
                 foreach (Warehouse p in products)
                 {
-                    Console.WriteLine($"{p.Id}.{p.Name}\nКоличество:{p.Quantity}\nОписание:{p.Description}");
+                    Console.WriteLine($"{p.Id}.{p.Name}\nКоличество:{p.Quantity}\nОписание:{p.Description}\n");
                 }
             }
         }
     }
 }
+
