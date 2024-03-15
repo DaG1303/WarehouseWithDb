@@ -1,25 +1,20 @@
-﻿using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WarehouseWithDb
+﻿namespace WarehouseWithDb
 {
-    class Program
-    {
+   public class Program
+   {
         static void Main(string[] args)
         {
-            Console.WriteLine($"Какие действия совершить с базой данных?\n1 - Добавление\n2 - Чтение данных\n3 - Редактирование\n4 - Удаление\n5 - Выход");
-            int i = Convert.ToInt32(Console.ReadLine());
+            //using (var context = new ApplicationContext())
+            //{
+            //    Warehouse warehouse = new Warehouse { Name = "a" };
+            //    context.Warehouses.Add(warehouse);
+            //    context.SaveChanges();
+            //    Console.WriteLine("Обьекты сохранены");
+            //}
             while (true)
             {
+                Console.WriteLine($"Какие действия совершить с базой данных?\n1 - Добавление\n2 - Чтение данных\n3 - Редактирование\n4 - Удаление\n5 - Выход");
+                int i = Convert.ToInt32(Console.ReadLine());
                 if (i == 1)
                 {
                     AddProduct();
@@ -33,74 +28,55 @@ namespace WarehouseWithDb
                     UpdateProduct();
                 }
                 if (i == 4)
-                {                    
+                {
                     DeleteProduct();
                 }
                 if (i == 5)
                 {
                     break;
                 }
-                Console.WriteLine($"Какие действия совершить с базой данных?\n1 - Добавление\n2 - Чтение данных\n3 - Редактирование\n4 - Удаление\n5 - Выход");
-                i = Convert.ToInt32(Console.ReadLine());
             }
         }
         private static void AddProduct()
         {
             using (var context = new ApplicationContext())
             {
-                bool isCreated = context.Database.EnsureCreated();
-                if (isCreated)
-                {
-                    Console.WriteLine("База данных успешно создана");
-                }
-                Console.WriteLine("Работа с базой данных началась");                
+                IsConnected(context);
 
                 Console.WriteLine("Введите значения:\n1.Название\n2.Количество\n3.Описание\n4.Поставщик\n");
-                Warehouse? warehouse = new Warehouse
+
+                Warehouse? warehouse = new()
                 {
                     Name = Console.ReadLine(),
                     Quantity = Convert.ToInt32(Console.ReadLine()),
                     Description = Console.ReadLine(),
-                    Supplier = Console.ReadLine()
+                    Supplier = Console.ReadLine(),
+                    Company = new() { Name =  Console.ReadLine()}
                 };
-                context.Warehouse.Add(warehouse);
+                context.Warehouses.Add(warehouse);
                 context.SaveChanges();
                 Console.WriteLine("Обьекты успешно сохранены!");
+                                
             }
         }
+
         private static void ReadProduct()
         {
             using (var context = new ApplicationContext())
             {
-                bool isCreated = context.Database.EnsureCreated();
-                if (isCreated)
-                {
-                    Console.WriteLine("База данных успешно создана");
-                }
-                Console.WriteLine("Работа с базой данных началась");
-
-                var products = context.Warehouse.ToList();
-                Console.WriteLine("Список товаров:");
-                foreach (Warehouse p in products)
-                {
-                    Console.WriteLine($"{p.Id}.{p.Name}\nКоличество:{p.Quantity}\nОписание:{p.Description}\nПоставщик:{p.Supplier}\n");
-                }
+                IsConnected(context);
+                Read(context);
             }
         }
         private static void UpdateProduct()
         {
             using (ApplicationContext context = new ApplicationContext())
             {
-                bool isCreated = context.Database.EnsureCreated();
-                if (isCreated)
-                {
-                    Console.WriteLine("База данных успешно создана");
-                }
-                Console.WriteLine("Работа с базой данных началась");
+                IsConnected(context);
 
                 Console.WriteLine("Какую вы строку хотите редактировать?\n");
                 int idToUpdate = Convert.ToInt32(Console.ReadLine());
-                Warehouse? warehouse = context.Warehouse.Find(idToUpdate);
+                Warehouse? warehouse = context.Warehouses.Find(idToUpdate);
                 Console.WriteLine("Введите значения:\n1.Название\n2.Количество\n3.Описание\n4.Поставщик\n");
 
                 if (warehouse != null)
@@ -109,34 +85,24 @@ namespace WarehouseWithDb
                     warehouse.Quantity = Convert.ToInt32(Console.ReadLine());
                     warehouse.Supplier = Console.ReadLine();
                     warehouse.Description = Console.ReadLine();
-                    context.Warehouse.Update(warehouse);
+                    context.Warehouses.Update(warehouse);
                     context.SaveChanges();
                 }
-                Console.WriteLine("\nДанные после редактирования:");
-                var products = context.Warehouse.ToList();
-                foreach (Warehouse product in products)
-                {
-                    Console.WriteLine($"{product.Id}.{product.Name}\nКоличество:{product.Quantity}\nОписание:{product.Description}\n");
-                }
+                Read(context);
             }
         }
+
         private static void DeleteProduct()
         {
             using (ApplicationContext context = new ApplicationContext())
             {
-                bool isCreated = context.Database.EnsureCreated();
-                if (isCreated)
-                {
-                    Console.WriteLine("База данных успешно создана");
-                }
-                Console.WriteLine("Работа с базой данных началась\n");
-
+                IsConnected(context);
                 Console.WriteLine("Какую вы строку хотите удалить из базы данных?\n");
                 int idToDelete = Convert.ToInt32(Console.ReadLine());
-                var product = context.Warehouse.FirstOrDefault(e => e.Id == idToDelete);
+                var product = context.Warehouses.FirstOrDefault(e => e.Id == idToDelete);
                 if (product != null)
                 {
-                    context.Warehouse.Remove(product);
+                    context.Warehouses.Remove(product);
                     context.SaveChanges();
                     Console.WriteLine("Строка успешно удалена.");
                 }
@@ -144,12 +110,30 @@ namespace WarehouseWithDb
                 {
                     Console.WriteLine("Строка с указанным Id не найдена.");
                 }
-                Console.WriteLine("\nДанные после работы с базой:");
-                var products = context.Warehouse.ToList();
-                foreach (Warehouse p in products)
-                {
-                    Console.WriteLine($"{p.Id}.{p.Name}\nКоличество:{p.Quantity}\nОписание:{p.Description}\n");
-                }
+                Read(context);
+            }
+        }
+        private static void IsConnected(ApplicationContext context)
+        {
+            bool isCreated = context.Database.EnsureCreated();
+            if (isCreated)
+            {
+                Console.WriteLine("База данных успешно создана");
+            }
+            Console.WriteLine("Работа с базой данных началась");
+        }
+        private static void Read(ApplicationContext context)
+        {
+            Console.WriteLine("\nСписок товаров:");
+            var warehouseProducts = context.Warehouses.ToList();
+            foreach (Warehouse p in warehouseProducts)
+            {
+                Console.WriteLine($"{p.Id}.{p.Name}\nКоличество:{p.Quantity}\nОписание:{p.Description}\nПоставщик:{p.Supplier}\n");
+            }
+            var companyProducts = context.Companies.ToList();
+            foreach (Company c in companyProducts)
+            {
+                Console.WriteLine($"{c.Id}.{c.Name}");
             }
         }
     }

@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace WarehouseWithDb
 {
-    class ApplicationContext : DbContext
+    public class ApplicationContext : DbContext
     {
         readonly StreamWriter logStream = new StreamWriter("mylog.txt", true);
-        public DbSet<Warehouse> Warehouse => Set<Warehouse>();
-        public ApplicationContext():base()
+        public DbSet<Warehouse> Warehouses { get; set; } = null!;
+        public DbSet<Company> Companies { get; set; } = null!;
+        public ApplicationContext()
         {
             Database.EnsureCreated();
         }
@@ -32,7 +26,10 @@ namespace WarehouseWithDb
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //base.OnModelCreating(modelBuilder);
+            //modelBuilder.Ignore<Company>();
         }
+
         public override void Dispose()
         {
             base.Dispose();
