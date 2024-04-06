@@ -1020,3 +1020,51 @@ dbug: 15.03.2024 13:13:18.156 RelationalEventId.ConnectionDisposing[20007] (Micr
       Disposing connection to database 'main' on server 'warehouse.db'.
 dbug: 15.03.2024 13:13:18.158 RelationalEventId.ConnectionDisposed[20008] (Microsoft.EntityFrameworkCore.Database.Connection) 
       Disposed connection to database 'main' on server 'warehouse.db' (0ms).
+dbug: 15.03.2024 13:25:10.771 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'Warehouse.CompanyId' was created in shadow state because there are no eligible CLR members with a matching name.
+dbug: 15.03.2024 13:25:10.901 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 7.0.16 initialized 'ApplicationContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:7.0.15' with options: None
+dbug: 15.03.2024 13:25:10.931 RelationalEventId.ConnectionCreating[20005] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Creating DbConnection.
+dbug: 15.03.2024 13:25:10.938 RelationalEventId.ConnectionCreated[20006] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Created DbConnection. (9ms).
+dbug: 15.03.2024 13:25:10.940 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'main' on server 'warehouse.db'.
+dbug: 15.03.2024 13:25:10.949 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'main' on server 'C:\Users\DaG13\source\repos\ConsoleApp3\ConsoleApp3\warehouse.db'.
+dbug: 15.03.2024 13:25:10.953 RelationalEventId.ConnectionDisposing[20007] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Disposing connection to database 'main' on server 'warehouse.db'.
+dbug: 15.03.2024 13:25:10.956 RelationalEventId.ConnectionDisposed[20008] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Disposed connection to database 'main' on server 'warehouse.db' (0ms).
+dbug: 15.03.2024 13:25:10.959 RelationalEventId.ConnectionCreating[20005] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Creating DbConnection.
+dbug: 15.03.2024 13:25:10.959 RelationalEventId.ConnectionCreated[20006] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Created DbConnection. (0ms).
+dbug: 15.03.2024 13:25:10.961 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteScalar'.
+dbug: 15.03.2024 13:25:10.965 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteScalar' (4ms).
+dbug: 15.03.2024 13:25:10.966 RelationalEventId.CommandInitialized[20106] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Initialized DbCommand for 'ExecuteScalar' (7ms).
+dbug: 15.03.2024 13:25:10.966 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'main' on server 'warehouse.db'.
+dbug: 15.03.2024 13:25:10.968 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'main' on server 'C:\Users\DaG13\source\repos\ConsoleApp3\ConsoleApp3\warehouse.db'.
+dbug: 15.03.2024 13:25:10.972 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+info: 15.03.2024 13:25:10.987 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+dbug: 15.03.2024 13:25:10.989 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'main' on server 'C:\Users\DaG13\source\repos\ConsoleApp3\ConsoleApp3\warehouse.db'.
+dbug: 15.03.2024 13:25:10.991 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'main' on server 'warehouse.db' (2ms).
+dbug: 15.03.2024 13:25:11.016 CoreEventId.ShadowPropertyCreated[10600] (Microsoft.EntityFrameworkCore.Model.Validation) 
+      The property 'Warehouse.CompanyId' was created in shadow state because there are no eligible CLR members with a matching name.
+dbug: 15.03.2024 13:25:11.195 CoreEventId.ContextDisposed[10407] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      'ApplicationContext' disposed.
+dbug: 15.03.2024 13:25:11.196 RelationalEventId.ConnectionDisposing[20007] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Disposing connection to database 'main' on server 'warehouse.db'.
+dbug: 15.03.2024 13:25:11.197 RelationalEventId.ConnectionDisposed[20008] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Disposed connection to database 'main' on server 'warehouse.db' (0ms).
