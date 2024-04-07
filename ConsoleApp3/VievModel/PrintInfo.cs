@@ -1,17 +1,21 @@
 ﻿using WarehouseWithDb.Model;
 
-namespace WarehouseWithDb.Viev
+namespace WarehouseWithDb.VievModel
 {
     public class PrintInfo
     {
-        public void Print(ApplicationContext context)
-        {
-            var companies = context.Companies.ToList();
+        public void PrintWarehouse(ApplicationContext context)
+        {            
             var warehouses = context.Warehouses.ToList();
             foreach (WarehouseDb w in warehouses)
             {
                 w.Print();
             }
+            
+        }
+        public void PrintCompany(ApplicationContext context)
+        {
+            var companies = context.Companies.ToList();
             foreach (CompanyDb c in companies)
             {
                 c.Print();

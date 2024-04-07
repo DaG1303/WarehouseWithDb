@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WarehouseWithDb.Interfaces;
 
 namespace WarehouseWithDb.Model
 {
-    public class CompanyDb
+    public class CompanyDb : IPrintable
     {
         int id;
-        string? name;
-        string? address;
+        public string? name;
+        public string? address;
         public int Id => id;
         public string? Name => name;
         public string? Address => address;
@@ -21,7 +22,7 @@ namespace WarehouseWithDb.Model
         }
         public void Print()
         {
-            Console.WriteLine($"{id}.{name}\nАдресс компании:{address}");
+            Console.WriteLine($"{id}.Название компании:{name}\nАдресс компании:{address}\n");
         }
     }
         

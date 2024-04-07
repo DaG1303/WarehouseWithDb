@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WarehouseWithDb.Interfaces;
 
 namespace WarehouseWithDb.Model
 {
-    public class WarehouseDb
+    public class WarehouseDb : IPrintable
     {
         int id;
         public int quantity;

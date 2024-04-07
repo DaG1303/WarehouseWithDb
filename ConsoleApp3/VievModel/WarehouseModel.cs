@@ -1,9 +1,8 @@
-﻿using WarehouseWithDb.Viev;
+﻿using WarehouseWithDb.Interfaces;
 using WarehouseWithDb.Model;
-using System.Threading.Channels;
-namespace WarehouseWithDb.Controller
+namespace WarehouseWithDb.VievModel
 {
-    public class WarehouseController
+    public class WarehouseModel : IControllable
     {
         private Connect _connect = new Connect();
         private PrintInfo _printInfo = new PrintInfo();
@@ -20,12 +19,12 @@ namespace WarehouseWithDb.Controller
                     WarehouseDb warehouse = new(quantity, Console.ReadLine(), Console.ReadLine(), Console.ReadLine());
                     context.Warehouses.Add(warehouse);
                     context.SaveChanges();
-                    _printInfo.Print(context);
+                    _printInfo.PrintWarehouse(context);
                 }
                 else
                 {
                     Console.WriteLine("Введены неверные значения!\n");
-                    _printInfo.Print(context);
+                    _printInfo.PrintWarehouse(context);
                 }
             }
         }
@@ -34,7 +33,7 @@ namespace WarehouseWithDb.Controller
             using (var context = new ApplicationContext())
             {
                 _connect.IsConnected(context);
-                _printInfo.Print(context);
+                _printInfo.PrintWarehouse(context);
             }
         }
         public void UpdateProduct()
@@ -43,7 +42,7 @@ namespace WarehouseWithDb.Controller
             {
                 _connect.IsConnected(context);
                 Console.WriteLine("Какую вы строку хотите редактировать?\n");
-                _printInfo.Print(context);
+                _printInfo.PrintWarehouse(context);
 
                 string idToUpdate = Console.ReadLine();
                 if (int.TryParse(idToUpdate, out int id))
@@ -62,18 +61,18 @@ namespace WarehouseWithDb.Controller
                             product.supplier = Console.ReadLine();
                             product.description = Console.ReadLine();                            
                             context.SaveChanges();
-                            _printInfo.Print(context);
+                            _printInfo.PrintWarehouse(context);
                         }
                     }
                     else
                     {
                         Console.WriteLine("Введены неверные значения!\n");
-                        _printInfo.Print(context);
+                        _printInfo.PrintWarehouse(context);
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Значение введено неверно.");
+                    Console.WriteLine("Значение введено неверно.\n");
                 }
             }
         }
@@ -83,7 +82,7 @@ namespace WarehouseWithDb.Controller
             {                
                 _connect.IsConnected(context);
                 Console.WriteLine("Какую вы строку хотите удалить из базы данных?\n");
-                _printInfo.Print(context);
+                _printInfo.PrintWarehouse(context);
 
                 string idToDelete = Console.ReadLine();
                 if (int.TryParse(idToDelete, out int id))
@@ -94,17 +93,17 @@ namespace WarehouseWithDb.Controller
                     {
                         context.Warehouses.Remove(product);
                         context.SaveChanges();
-                        Console.WriteLine("Строка успешно удалена.");
+                        Console.WriteLine("Строка успешно удалена.\n");
                     }
                     else
                     {
-                        Console.WriteLine("Строка с указанным Id не найдена.");
-                        _printInfo.Print(context);
+                        Console.WriteLine("Строка с указанным Id не найдена.\n");
+                        _printInfo.PrintWarehouse(context);
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Значение введено неверно.");
+                    Console.WriteLine("Значение введено неверно.\n");
                 }
                 
             }
