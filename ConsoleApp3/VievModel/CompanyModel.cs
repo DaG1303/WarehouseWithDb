@@ -15,9 +15,7 @@ namespace WarehouseWithDb.VievModel
                 _connect.IsConnected(context);
                 Console.WriteLine("Введите значения:\n1.Количество\n2.Адресс компании\n");
 
-                CompanyDb company = new(Console.ReadLine(), Console.ReadLine());
-
-                context.Companies.Add(company);
+                context.Companies.Add(new CompanyDb(Console.ReadLine(), Console.ReadLine()));
                 context.SaveChanges();
 
                 _printInfo.PrintCompany(context);
@@ -47,8 +45,7 @@ namespace WarehouseWithDb.VievModel
                     Console.WriteLine("Введите значения:\n1.Количество\n2.Адресс компании\n");
                     if (product != null)
                     {
-                        product.name = Console.ReadLine();
-                        product.address = Console.ReadLine();
+                        product.Set(Console.ReadLine(), Console.ReadLine());
                         context.SaveChanges();
                         _printInfo.PrintCompany(context);
                     }

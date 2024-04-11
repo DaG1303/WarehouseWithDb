@@ -16,8 +16,7 @@ namespace WarehouseWithDb.VievModel
                 string? input = Console.ReadLine();
                 if (int.TryParse(input, out int quantity))
                 {
-                    WarehouseDb warehouse = new(quantity, Console.ReadLine(), Console.ReadLine(), Console.ReadLine());
-                    context.Warehouses.Add(warehouse);
+                    context.Warehouses.Add(new WarehouseDb(quantity, Console.ReadLine(), Console.ReadLine(), Console.ReadLine()));
                     context.SaveChanges();
                     _printInfo.PrintWarehouse(context);
                 }
@@ -56,10 +55,7 @@ namespace WarehouseWithDb.VievModel
                     {
                         if (product != null)
                         {
-                            product.quantity = quantity;
-                            product.name = Console.ReadLine();
-                            product.supplier = Console.ReadLine();
-                            product.description = Console.ReadLine();                            
+                            product.Set(quantity, Console.ReadLine(), Console.ReadLine(), Console.ReadLine());                       
                             context.SaveChanges();
                             _printInfo.PrintWarehouse(context);
                         }

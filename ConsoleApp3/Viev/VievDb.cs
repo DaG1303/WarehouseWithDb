@@ -10,9 +10,15 @@ namespace WarehouseWithDb.Viev
             Console.WriteLine("С какой из моделей начать работу?\n1 - Склад\n2 - Компания ");
             string i = Console.ReadLine();
             if (int.TryParse(i, out int result))
-            {                
-                VievWarehouse(result);
-                VievCompany(result);
+            {
+                if (result == 1)
+                {
+                    VievWarehouse(result);                    
+                }
+                else if (result == 2)
+                {
+                    VievCompany(result);
+                }
             }
             else
             {

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WarehouseWithDb.Interfaces;
 
 namespace WarehouseWithDb.Model
@@ -10,10 +7,10 @@ namespace WarehouseWithDb.Model
     public class WarehouseDb : IPrintable
     {
         int id;
-        public int quantity;
-        public string name;
-        public string? description;
-        public string? supplier;
+        int quantity;
+        string name;
+        string? description;
+        string? supplier;
         public int Id => id;
         public int Quantity => quantity;
         public string Name => name;
@@ -26,7 +23,14 @@ namespace WarehouseWithDb.Model
             this.quantity = quantity;
             this.description = description;
             this.supplier = supplier;
-        }        
+        }
+        public void Set(int quantity, string name, string supplier, string description)
+        {
+            this.name = name;
+            this.quantity = quantity;
+            this.description = description;
+            this.supplier = supplier;
+        }
         public void Print()
         {
             Console.WriteLine("\nСписок товаров:");
